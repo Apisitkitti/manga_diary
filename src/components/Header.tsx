@@ -8,7 +8,7 @@ const Header: React.FC<Props> = ({
     navTitle = ['Manga', 'Manhwa'],
 }) => {
     return (
-        <div className="flex h-[50px] items-center justify-between bg-red-50 px-7 text-2xl font-bold">
+        <div className="flex h-[50px] items-center justify-between bg-[#162556] px-7 text-2xl font-bold text-white">
             <div>{title}</div>
             <nav className="flex space-x-4">
                 {navTitle.map((navItem, idx) => (
