@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { ComicInformation } from './interfaces/book'
 import { getAllComic } from './services/comicService'
 import ComicCard from '@/components/ComicCard'
+import { Spinner } from '@heroui/react'
 
 export default function Home() {
     const [bookData, SetBookData] = useState<ComicInformation>()
@@ -18,17 +19,23 @@ export default function Home() {
         fetchComic()
     }, [])
     if (!bookData) {
-        return <div>Loading...</div>
+        return (
+            <Spinner
+                color="secondary"
+                label="Loading..."
+                labelColor="secondary"
+            />
+        )
     }
     return (
-        <div>
+        <div className="flex justify-center">
             {bookData.list.map((bookItem) => (
                 <ComicCard
                     key={bookItem.Id}
                     name={bookItem.name}
                     type={bookItem.type}
                     cover={bookItem.cover_img[0].signedUrl}
-                    isColor={bookItem.color === 'color'}
+                    isColor={bookItem.is_color === 'color'}
                     latestEp={bookItem.comic_quantity}
                 />
             ))}

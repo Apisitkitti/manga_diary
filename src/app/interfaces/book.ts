@@ -21,7 +21,7 @@ export interface ComicInformation {
         CreateAt: string
         UpdatedAt: string
         comic_quantity: number
-        color: string
+        is_color: string
     }[]
 }
 interface BasePagination {
