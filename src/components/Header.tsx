@@ -13,7 +13,11 @@ const Header: React.FC<Props> = ({
             <Link href="/">{title}</Link>
             <nav className="flex space-x-4">
                 {navTitle.map((navItem, idx) => (
-                    <Link href="#" className="hover:underline" key={idx}>
+                    <Link
+                        href={`/${navItem.toLowerCase()}`}
+                        className="hover:underline"
+                        key={idx}
+                    >
                         {navItem}
                     </Link>
                 ))}

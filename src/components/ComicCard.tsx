@@ -1,4 +1,5 @@
 import { ComicType } from '@/app/interfaces/book'
+import { Card } from '@heroui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 interface Props {
@@ -20,15 +21,14 @@ const ComicCard: React.FC<Props> = ({
             case ComicType.MANGA:
                 return '/assets/japan_flag.png'
             case ComicType.MANHWA:
-                return '/assets/japan_flag.png'
+                return '/assets/korea_flag.png'
             default:
                 return '/assets/no_image.jpg'
         }
     }
-    console.log(handleComicTypeFlagDisplay())
     return (
-        <Link href="#" className="flex cursor-pointer flex-col space-y-1">
-            <div className="relative w-max">
+        <Card shadow="lg" className="flex cursor-pointer flex-col space-y-1">
+            <Link href={`${type}/${name}`} className="relative w-max">
                 <Image
                     src={handleComicTypeFlagDisplay()}
                     alt="flag img"
@@ -48,14 +48,22 @@ const ComicCard: React.FC<Props> = ({
                         COLOR
                     </p>
                 )}
-            </div>
+            </Link>
             <div className="flex flex-col space-y-1">
-                <p className="w-[215px] font-bold text-white">{name}</p>
-                <p className="w-max rounded-2xl bg-amber-400 px-2 py-1 font-bold">
+                <Link
+                    href={`${type}/${name}`}
+                    className="w-[215px] font-bold text-white"
+                >
+                    {name}
+                </Link>
+                <Link
+                    href={`${type}/${name}/ตอนที่${latestEp}`}
+                    className="w-max rounded-2xl bg-amber-400 px-2 py-1 font-bold"
+                >
                     ตอนที่ {latestEp}
-                </p>
+                </Link>
             </div>
-        </Link>
+        </Card>
     )
 }
 export default ComicCard
