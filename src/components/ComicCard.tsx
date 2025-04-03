@@ -1,5 +1,5 @@
 import { ComicType } from '@/app/interfaces/book'
-import { Card } from '@heroui/react'
+import { Chip } from '@heroui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 interface Props {
@@ -27,7 +27,7 @@ const ComicCard: React.FC<Props> = ({
         }
     }
     return (
-        <Card shadow="lg" className="flex cursor-pointer flex-col space-y-1">
+        <div className="flex cursor-pointer flex-col space-y-1">
             <Link href={`${type}/${name}`} className="relative w-max">
                 <Image
                     src={handleComicTypeFlagDisplay()}
@@ -39,8 +39,8 @@ const ComicCard: React.FC<Props> = ({
                 <Image
                     src={cover}
                     alt="cover comic img"
-                    width={200}
-                    height={200}
+                    width={150}
+                    height={150}
                     className="rounded-2xl"
                 />
                 {isColor && (
@@ -52,18 +52,17 @@ const ComicCard: React.FC<Props> = ({
             <div className="flex flex-col space-y-1">
                 <Link
                     href={`${type}/${name}`}
-                    className="w-[215px] font-bold text-white"
+                    className="w-1/2 font-bold text-white"
                 >
                     {name}
                 </Link>
-                <Link
-                    href={`${type}/${name}/ตอนที่${latestEp}`}
-                    className="w-max rounded-2xl bg-amber-400 px-2 py-1 font-bold"
-                >
-                    ตอนที่ {latestEp}
+                <Link href={`${type}/${name}/ตอนที่${latestEp}`}>
+                    <Chip className="font-bold" color="warning">
+                        ตอนที่ {latestEp}
+                    </Chip>
                 </Link>
             </div>
-        </Card>
+        </div>
     )
 }
 export default ComicCard

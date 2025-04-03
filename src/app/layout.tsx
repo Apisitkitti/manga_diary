@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import './style/globals.css'
 import Providers from './provider'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -15,8 +15,8 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="en">
-            <body>
+        <html lang="en" suppressHydrationWarning>
+            <body className="bg-[#243263]">
                 <Providers>
                     <Header />
                     <div className="my-5">{children}</div>
