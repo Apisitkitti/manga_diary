@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react'
 import { ComicInformation } from './interfaces/book'
 import { getAllComic } from './services/comicService'
-import ComicCard from '@/components/ComicCard'
-import { Spinner, Pagination } from '@heroui/react'
+import ComicCard from '@/app/components/ComicCard'
+import { Spinner } from '@heroui/react'
 
 export default function Home() {
     const [bookData, SetBookData] = useState<ComicInformation>()
@@ -28,7 +28,7 @@ export default function Home() {
                 <Spinner variant="wave" />
             ) : (
                 <div className="flex flex-col space-y-5">
-                    <div className="flex">
+                    <div className="flex space-x-10">
                         {bookData?.list.map((bookItem) => (
                             <ComicCard
                                 key={bookItem.Id}
@@ -40,7 +40,6 @@ export default function Home() {
                             />
                         ))}
                     </div>
-                    <Pagination initialPage={1} total={10} />
                 </div>
             )}
         </div>

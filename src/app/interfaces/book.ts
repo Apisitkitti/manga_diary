@@ -18,12 +18,13 @@ export interface ComicInformation {
         comic_status: string
         type: ComicType
         summary: string | null
-        CreateAt: string
+        CreatedAt: string
         UpdatedAt: string
         comic_quantity: number
         is_color: string
     }[]
 }
+
 interface BasePagination {
     page: number
     pageSize: number

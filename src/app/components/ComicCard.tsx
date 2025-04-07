@@ -3,11 +3,11 @@ import { Chip } from '@heroui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 interface Props {
-    name: string
+    name?: string
     type: ComicType
     cover: string
     isColor: boolean
-    latestEp: number
+    latestEp?: number
 }
 const ComicCard: React.FC<Props> = ({
     name,
@@ -50,17 +50,21 @@ const ComicCard: React.FC<Props> = ({
                 )}
             </Link>
             <div className="flex flex-col space-y-1">
-                <Link
-                    href={`${type}/${name}`}
-                    className="w-1/2 font-bold text-white"
-                >
-                    {name}
-                </Link>
-                <Link href={`${type}/${name}/ตอนที่${latestEp}`}>
-                    <Chip className="font-bold" color="warning">
-                        ตอนที่ {latestEp}
-                    </Chip>
-                </Link>
+                {name && (
+                    <Link
+                        href={`${type}/${name}`}
+                        className="w-[120px] font-bold text-white"
+                    >
+                        {name}
+                    </Link>
+                )}
+                {latestEp && (
+                    <Link href={`${type}/${name}/ตอนที่${latestEp}`}>
+                        <Chip className="font-bold" color="warning">
+                            ตอนที่ {latestEp}
+                        </Chip>
+                    </Link>
+                )}
             </div>
         </div>
     )

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import './style/globals.css'
 import Providers from './provider'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/app/components/Header'
+import Footer from '@/app/components/Footer'
 
 export const metadata: Metadata = {
     title: 'MangaDiary',
@@ -19,7 +19,7 @@ export default function RootLayout({
             <body className="bg-[#243263]">
                 <Providers>
                     <Header />
-                    <div className="my-5">{children}</div>
+                    <div className="min-h-[calc(100dvh-100px)]">{children}</div>
                     <Footer />
                 </Providers>
             </body>
