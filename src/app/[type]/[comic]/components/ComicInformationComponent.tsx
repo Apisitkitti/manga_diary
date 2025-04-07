@@ -1,6 +1,7 @@
 'use client'
 import { ComicType } from '@/app/interfaces/book'
-import ComicCard from '@/components/ComicCard'
+import ComicCard from '@/app/components/ComicCard'
+import { Listbox, ListboxItem } from '@heroui/react'
 interface Props {
     name: string
     cover_img: string
@@ -48,7 +49,15 @@ const ComicInformationComponent: React.FC<Props> = ({
                     </div>
                     <div>
                         <p className="text-xl font-bold">Latest Release</p>
-                        {comic_quantity}
+                        <Listbox color="primary" variant="bordered">
+                            <ListboxItem
+                                key="new"
+                                color="primary"
+                                className="bg-black"
+                            >
+                                ตอนที่ {comic_quantity}
+                            </ListboxItem>
+                        </Listbox>
                     </div>
                 </div>
             </div>
