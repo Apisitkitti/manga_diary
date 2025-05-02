@@ -6,14 +6,14 @@ import ComicCard from '@/app/components/ComicCard'
 import { Spinner } from '@heroui/react'
 
 export default function Home() {
-    const [bookData, SetBookData] = useState<ComicInformation>()
+    const [bookData, SetBookData] = useState<ComicInformation>({ list: [] })
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
     useEffect(() => {
         const fetchComic = async () => {
             try {
                 setIsLoading(true)
-                const data = await getAllComic()
+                const data = (await getAllComic()) as ComicInformation
                 SetBookData(data)
                 setIsLoading(false)
             } catch (err) {
@@ -29,7 +29,7 @@ export default function Home() {
             ) : (
                 <div className="flex flex-col space-y-5">
                     <div className="flex space-x-10">
-                        {bookData?.list.map((bookItem) => (
+                        {bookData.list.map((bookItem) => (
                             <ComicCard
                                 key={bookItem.Id}
                                 name={bookItem.name}

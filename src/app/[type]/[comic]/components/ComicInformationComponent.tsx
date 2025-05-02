@@ -2,6 +2,7 @@
 import { ComicType } from '@/app/interfaces/book'
 import ComicCard from '@/app/components/ComicCard'
 import { Listbox, ListboxItem } from '@heroui/react'
+import Link from 'next/link'
 interface Props {
     name: string
     cover_img: string
@@ -50,13 +51,22 @@ const ComicInformationComponent: React.FC<Props> = ({
                     <div>
                         <p className="text-xl font-bold">Latest Release</p>
                         <Listbox color="primary" variant="bordered">
-                            <ListboxItem
-                                key="new"
-                                color="primary"
-                                className="bg-black"
-                            >
-                                ตอนที่ {comic_quantity}
-                            </ListboxItem>
+                            {Array.from(
+                                { length: comic_quantity },
+                                (_, index) => index + 1
+                            )
+                                .sort((a, b) => b - a)
+                                .map((item) => (
+                                    <ListboxItem
+                                        key={item}
+                                        color="primary"
+                                        className="my-1 bg-black"
+                                        as={Link}
+                                        href={`${type}/${name}/ตอนที่ ${item}`}
+                                    >
+                                        ตอนที่ {item}
+                                    </ListboxItem>
+                                ))}
                         </Listbox>
                     </div>
                 </div>
